@@ -84,7 +84,17 @@ public class BoxSystem {
     {
         if (isABox(x, y))
         {
-            graphics.drawTexture(Textures.FLOOR, x, y);
+            for (int i = 0; i < boxCoords.size(); i++)
+            {
+                int [] coords = boxCoords.get(0);
+                int boxX = coords[0];
+                int boxY = coords[1];
+                if (boxX == x && boxY == y)
+                {
+                    boxCoords.remove(i);
+                    graphics.drawTexture(Textures.FLOOR, x, y);
+                }
+            }
         }
     }
 
