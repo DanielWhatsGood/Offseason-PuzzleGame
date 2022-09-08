@@ -19,8 +19,10 @@ public class BoxSystem {
     }
 
     */
+    public void init () {
+        ArrayList<int[]> boxCoords = addBoxes();
+    }
 
-    ArrayList<int[]> boxCoords = addBoxes();
 
     // makes sure boxes do not share coordinates and does not spawn on wall
     // && (!wallSystem.isAWall(element[0], element[1]))

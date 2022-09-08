@@ -33,10 +33,10 @@ public class WallSystem
 
     }
 
-    public boolean isAWall(int x, int y) {
+    public boolean isAWall(int playerx, int playery) {
         for (int[] coord : wallCoords)
         {
-            if (coord[0] == x && coord[1] == y)
+            if (coord[0] == playerx && coord[1] == playery)
             {
                 return true;
             }

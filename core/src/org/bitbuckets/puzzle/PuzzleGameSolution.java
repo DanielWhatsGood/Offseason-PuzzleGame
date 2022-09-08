@@ -63,6 +63,11 @@ public class PuzzleGameSolution implements SubSystem {
 
         playerSystem.periodic(graphics);
 
+        if (targetSystem.boxesMoved())
+        {
+            System.out.println("Congratulations on clearing the game!");
+        }
+
 
     }
 
