@@ -28,8 +28,8 @@ public class GameCore implements ApplicationListener  {
         int screenWidthPx = Gdx.graphics.getWidth();
         int screenHeightPx = Gdx.graphics.getHeight();
 
-        int squareWidthPx = screenWidthPx / 8;
-        int squareHeightPx = screenHeightPx / 8;
+        int squareWidthPx = screenWidthPx / 10;
+        int squareHeightPx = screenHeightPx / 10;
 
         Sprite[] sprites = new Sprite[5];
         sprites[0] = new Sprite(new Texture("box.png"));

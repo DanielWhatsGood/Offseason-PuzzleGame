@@ -3,7 +3,7 @@ package org.bitbuckets.puzzle;
 import org.bitbuckets.puzzle.lib.Graphics;
 import org.bitbuckets.puzzle.lib.SubSystem;
 import org.bitbuckets.puzzle.lib.Textures;
-import org.bitbuckets.puzzle.subsystems.PlayerSystem;
+import org.bitbuckets.puzzle.subsystems.*;
 
 /**
  * This is where you write the code that will make the game function!
@@ -17,7 +17,19 @@ public class PuzzleGameSolution implements SubSystem {
      * This is your very first subsystem! We use the subsystem pattern in robot code as well. Press Ctrl + B while
      * highlighting it to open it, or double click it in the file browser
      */
-    PlayerSystem playerSystem;
+
+    FloorSystem floorSystem = new FloorSystem();
+
+    WallSystem wallSystem = new WallSystem();
+
+    BoxSystem boxSystem = new BoxSystem();
+
+    TargetSystem targetSystem = new TargetSystem(boxSystem.getNumBoxes(), boxSystem.getBoxCoords());
+
+    PlayerSystem playerSystem = new PlayerSystem(wallSystem, boxSystem);
+
+
+
 
     @Override
     public void init() {
@@ -25,9 +37,12 @@ public class PuzzleGameSolution implements SubSystem {
         //Use this to execute code that is used for startup
 
         //when you add new subsystems, make sure to add them here, in the periodic loop, and call their init function.
-        playerSystem = new PlayerSystem();
 
         playerSystem.init();
+
+
+
+
     }
 
     @Override
@@ -38,7 +53,17 @@ public class PuzzleGameSolution implements SubSystem {
         //You can do stuff with the graphics in your periodic loop!
         //hover over the word Graphics to learn more about how to draw objects on the screen
 
+        floorSystem.periodic(graphics);
+
+        wallSystem.periodic(graphics);
+
+        boxSystem.periodic(graphics);
+
+        targetSystem.periodic(graphics);
+
         playerSystem.periodic(graphics);
+
+
     }
 
 }
