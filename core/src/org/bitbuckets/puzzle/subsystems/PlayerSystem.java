@@ -72,7 +72,8 @@ public class PlayerSystem {
 
     public boolean canMoveBox(int x, int y)
     {
-        return !wallSystem.isAWall(x, y);
+
+        return !wallSystem.isAWall(x, y) && !boxSystem.isABox(x, y);
     }
 
 

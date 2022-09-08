@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class BoxSystem {
 
+    ArrayList<int[]> boxCoords = addBoxes();
     private int numBoxes;
 
     /*
@@ -73,8 +74,9 @@ public class BoxSystem {
 
     public void moveBox(Graphics graphics, int oldX, int oldY, int x, int y)
     {
-        graphics.drawTexture(Textures.FLOOR, oldX, oldY);
-        deleteBox(graphics, x, y);
+        System.out.println("test 2");
+        graphics.drawTexture(Textures.FLOOR, x, y);
+        deleteBox(graphics, oldX, oldY);
 
     }
 
