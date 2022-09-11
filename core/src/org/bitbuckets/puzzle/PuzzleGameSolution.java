@@ -57,9 +57,9 @@ public class PuzzleGameSolution implements SubSystem {
 
         wallSystem.periodic(graphics);
 
-        boxSystem.periodic(graphics);
+        targetSystem.periodic(graphics, boxSystem.getBoxCoords());
 
-        targetSystem.periodic(graphics);
+        boxSystem.periodic(graphics);
 
         playerSystem.periodic(graphics);
 

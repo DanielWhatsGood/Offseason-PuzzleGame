@@ -3,6 +3,7 @@ package org.bitbuckets.puzzle.subsystems;
 import org.bitbuckets.puzzle.lib.Graphics;
 import org.bitbuckets.puzzle.lib.Textures;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TargetSystem {
@@ -25,7 +26,7 @@ public class TargetSystem {
             int x = (int) (Math.random() * (8) + 2);
             int y = (int) (Math.random() * (8) + 2);
             list.add(new int[] {x,y});
-
+            System.out.println("Target added at " + x + "," + y);
         }
 
         return list;
@@ -57,14 +58,14 @@ public class TargetSystem {
         return false;
     }
 
-    public void periodic(Graphics graphics)
+    public void periodic(Graphics graphics, ArrayList<int[]> newBoxCoords)
     {
 
         //System.out.println(targetCoords.size());
         for (int[] coords : targetCoords)
         {
             System.out.println("Num of Targets: " + numTargets);
-            //System.out.println("target at " + coords[0] + ", " + coords[1]);
+            boxCoords = newBoxCoords;
             graphics.drawTexture(Textures.TARGET, coords[0], coords[1]);
         }
 

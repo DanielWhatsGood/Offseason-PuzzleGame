@@ -52,7 +52,7 @@ public class WallSystem
 
         for (int[] coords : wallCoords)
         {
-            graphics.drawTexture(Textures.WALL, coords[0], coords[1]);
+            graphics.drawTexture(Textures.TARGET, coords[0], coords[1]);
         }
 
     }

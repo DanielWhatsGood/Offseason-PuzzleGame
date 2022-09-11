@@ -13,8 +13,6 @@ public class PlayerSystem {
 
     BoxSystem boxSystem;
 
-    TargetSystem targetSystem;
-
     public PlayerSystem(WallSystem wall, BoxSystem boxes) {
         this.wallSystem = wall;
         this.boxSystem = boxes;
@@ -48,31 +46,8 @@ public class PlayerSystem {
         return new int[]{0, 0};
     }
 
-
-    /*
-    public void moveFunction(Graphics graphics)
-    {
-        int[] transform = transform();
-        int newX = currentPos[0] + transform[0];
-        int newY = currentPos[1] + transform[1];
-        if (!wallSystem.isAWall(newX, newY))
-        {
-            if (boxSystem.isABox(newX, newY) && canMoveBox(newX + transform[0], newY + transform[1]))
-            {
-                boxSystem.moveBox(graphics, newX, newY, newX + transform[0], newY + transform[1]);
-            }
-            currentPos[0] = newX;
-            currentPos[1] = newY;
-
-        }
-
-    }
-
-     */
-
     public boolean canMoveBox(int x, int y)
     {
-
         return !wallSystem.isAWall(x, y) && !boxSystem.isABox(x, y);
     }
 
@@ -83,19 +58,28 @@ public class PlayerSystem {
         int[] transform = transform();
         int newX = currentPos[0] + transform[0];
         int newY = currentPos[1] + transform[1];
+        if (boxSystem.isABox(newX, newY) && canMoveBox(newX + transform[0], newY + transform[1]))
+        {
+            boxSystem.moveBox(graphics, newX, newY, newX + transform[0], newY + transform[1]);
+        }
+        else if (boxSystem.isABox(newX, newY) && !canMoveBox(newX + transform[0], newY + transform[1]))
+        {
+            System.out.println("Cat cannot move there because there is an unmovable box at " + (newX + transform[0]) + "," + (newY + transform[1]));
+            newX -= transform[0];
+            newY -= transform[1];
+        }
         if (!wallSystem.isAWall(newX, newY))
         {
-            if (boxSystem.isABox(newX, newY) && canMoveBox(newX + transform[0], newY + transform[1]))
-            {
-                boxSystem.moveBox(graphics, newX, newY, newX + transform[0], newY + transform[1]);
-            }
             currentPos[0] = newX;
             currentPos[1] = newY;
-
+        }
+        else
+        {
+            System.out.println("Cat cannot move there because there is a wall");
         }
 
         graphics.drawTexture(Textures.PLAYER, currentPos[0], currentPos[1]);
-
+        System.out.println("Cat is at " + currentPos[0] + "," + currentPos[1]);
     }
 
 }
