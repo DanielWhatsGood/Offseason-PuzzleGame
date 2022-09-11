@@ -75,25 +75,21 @@ public class BoxSystem {
     public void moveBox(Graphics graphics, int oldX, int oldY, int x, int y)
     {
         System.out.println("test 2");
-        graphics.drawTexture(Textures.FLOOR, x, y);
         deleteBox(graphics, oldX, oldY);
 
     }
 
     public void deleteBox(Graphics graphics, int x, int y)
     {
-        if (isABox(x, y))
+        for (int i = 0; i < boxCoords.size(); i++)
         {
-            for (int i = 0; i < boxCoords.size(); i++)
+            int [] coords = boxCoords.get(0);
+            int boxX = coords[0];
+            int boxY = coords[1];
+            if (boxX == x && boxY == y)
             {
-                int [] coords = boxCoords.get(0);
-                int boxX = coords[0];
-                int boxY = coords[1];
-                if (boxX == x && boxY == y)
-                {
-                    boxCoords.remove(i);
-                    graphics.drawTexture(Textures.FLOOR, x, y);
-                }
+                boxCoords.remove(i);
+                //graphics.drawTexture(Textures.FLOOR, x, y);
             }
         }
     }

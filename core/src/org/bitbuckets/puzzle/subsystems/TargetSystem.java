@@ -20,7 +20,6 @@ public class TargetSystem {
     public ArrayList<int[]> addTargets()
     {
         ArrayList<int[]> list = new ArrayList<int []>();
-
         for (int i = 0; i < numTargets; i++)
         {
             int x = (int) (Math.random() * (8) + 2);
@@ -51,17 +50,21 @@ public class TargetSystem {
             {
                 if (box[0] != target[0] || box[1] != target[1])
                 {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     public void periodic(Graphics graphics)
     {
+
+        //System.out.println(targetCoords.size());
         for (int[] coords : targetCoords)
         {
+            System.out.println("Num of Targets: " + numTargets);
+            //System.out.println("target at " + coords[0] + ", " + coords[1]);
             graphics.drawTexture(Textures.TARGET, coords[0], coords[1]);
         }
 
