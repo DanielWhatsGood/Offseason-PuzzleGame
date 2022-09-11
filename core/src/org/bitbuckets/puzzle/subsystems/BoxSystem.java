@@ -49,8 +49,8 @@ public class BoxSystem {
         for (int numBoxes = 8; numBoxes > 0; numBoxes--) {
             // int a = Math.random()*(max-min+1)+min;
             // max = 9, min = 2
-            int x = (int) (Math.random() * (8) + 2);
-            int y = (int) (Math.random() * (8) + 2);
+            int x = (int) (Math.random() * (7) + 3);
+            int y = (int) (Math.random() * (7) + 3);
             list.add(new int[]{x, y});
         }
 
@@ -74,7 +74,7 @@ public class BoxSystem {
 
     public void moveBox(Graphics graphics, int oldX, int oldY, int x, int y)
     {
-        System.out.println("test 2");
+        System.out.println("Moved box");
         deleteBox(graphics, oldX, oldY);
 
     }
@@ -83,12 +83,13 @@ public class BoxSystem {
     {
         for (int i = 0; i < boxCoords.size(); i++)
         {
-            int [] coords = boxCoords.get(0);
+            int [] coords = boxCoords.get(i);
             int boxX = coords[0];
             int boxY = coords[1];
             if (boxX == x && boxY == y)
             {
                 boxCoords.remove(i);
+                System.out.println("Deleted box at " + coords[0] + " ," + coords[1] );
                 //graphics.drawTexture(Textures.FLOOR, x, y);
             }
         }
