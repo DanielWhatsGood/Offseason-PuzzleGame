@@ -7,15 +7,15 @@ import java.util.ArrayList;
 
 public class TargetSystem {
 
+    ArrayList<int[]> targetCoords = addTargets();
+    ArrayList<int[]> boxCoords;
+    int numTargets;
     public TargetSystem(int numBoxes, ArrayList<int[]> boxCoords)
     {
         numTargets = numBoxes;
         this.boxCoords = boxCoords;
     }
 
-    ArrayList<int[]> targetCoords = addTargets();
-    int numTargets = 0;
-    ArrayList<int[]> boxCoords;
 
     public ArrayList<int[]> addTargets()
     {
