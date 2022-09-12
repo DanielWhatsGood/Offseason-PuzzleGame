@@ -8,13 +8,14 @@ import java.util.ArrayList;
 
 public class TargetSystem {
 
-    ArrayList<int[]> targetCoords = addTargets();
+    ArrayList<int[]> targetCoords;
     ArrayList<int[]> boxCoords;
     int numTargets;
-    public TargetSystem(int numBoxes, ArrayList<int[]> boxCoords)
+    public TargetSystem(ArrayList<int[]> boxCoords)
     {
-        numTargets = numBoxes;
+        numTargets = boxCoords.size();
         this.boxCoords = boxCoords;
+        targetCoords = addTargets();
     }
 
 
@@ -26,7 +27,6 @@ public class TargetSystem {
             int x = (int) (Math.random() * (8) + 2);
             int y = (int) (Math.random() * (8) + 2);
             list.add(new int[] {x,y});
-            System.out.println("Target added at " + x + "," + y);
         }
 
         return list;
@@ -43,19 +43,19 @@ public class TargetSystem {
         return false;
     }
 
-    public boolean boxesMoved()
+    public boolean allBoxesOnTargets()
     {
         for (int[] box : boxCoords)
         {
             for (int[] target : targetCoords)
             {
-                if (box[0] != target[0] || box[1] != target[1])
+                if (box[0] != target[0] && box[1] != target[1])
                 {
-                    return true;
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     public void periodic(Graphics graphics, ArrayList<int[]> newBoxCoords)
@@ -64,7 +64,6 @@ public class TargetSystem {
         //System.out.println(targetCoords.size());
         for (int[] coords : targetCoords)
         {
-            System.out.println("Num of Targets: " + numTargets);
             boxCoords = newBoxCoords;
             graphics.drawTexture(Textures.TARGET, coords[0], coords[1]);
         }

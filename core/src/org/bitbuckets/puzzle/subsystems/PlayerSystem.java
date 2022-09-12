@@ -64,7 +64,6 @@ public class PlayerSystem {
         }
         else if (boxSystem.isABox(newX, newY) && !canMoveBox(newX + transform[0], newY + transform[1]))
         {
-            System.out.println("Cat cannot move there because there is an unmovable box at " + (newX + transform[0]) + "," + (newY + transform[1]));
             newX -= transform[0];
             newY -= transform[1];
         }
@@ -73,13 +72,8 @@ public class PlayerSystem {
             currentPos[0] = newX;
             currentPos[1] = newY;
         }
-        else
-        {
-            System.out.println("Cat cannot move there because there is a wall");
-        }
 
         graphics.drawTexture(Textures.PLAYER, currentPos[0], currentPos[1]);
-        System.out.println("Cat is at " + currentPos[0] + "," + currentPos[1]);
     }
 
 }

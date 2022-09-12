@@ -24,7 +24,7 @@ public class PuzzleGameSolution implements SubSystem {
 
     BoxSystem boxSystem = new BoxSystem();
 
-    TargetSystem targetSystem = new TargetSystem(boxSystem.getNumBoxes(), boxSystem.getBoxCoords());
+    TargetSystem targetSystem = new TargetSystem(boxSystem.getBoxCoords());
 
     PlayerSystem playerSystem = new PlayerSystem(wallSystem, boxSystem);
 
@@ -63,7 +63,7 @@ public class PuzzleGameSolution implements SubSystem {
 
         playerSystem.periodic(graphics);
 
-        if (targetSystem.boxesMoved())
+        if (targetSystem.allBoxesOnTargets())
         {
             System.out.println("Congratulations on clearing the game!");
         }

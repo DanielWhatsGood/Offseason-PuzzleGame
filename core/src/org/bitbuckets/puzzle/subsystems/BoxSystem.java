@@ -25,7 +25,7 @@ public class BoxSystem {
     }
 
 
-    // makes sure boxes do not share coordinates and does not spawn on wall
+    // makes sure boxes do not share coordinates
     // && (!wallSystem.isAWall(element[0], element[1]))
     public ArrayList<int[]> checkBoxes(ArrayList<int[]> list)
     {
@@ -74,11 +74,9 @@ public class BoxSystem {
 
     public void moveBox(Graphics graphics, int oldX, int oldY, int x, int y)
     {
-        System.out.println("Moved box");
         deleteBox(oldX, oldY);
         int[] newBox = {x, y};
         addBox(newBox);
-        System.out.println("Added new box at " + x + "," + y);
         graphics.drawTexture(Textures.BOX, x, y);
 
     }
@@ -98,8 +96,6 @@ public class BoxSystem {
             if (boxX == x && boxY == y)
             {
                 boxCoords.remove(i);
-                System.out.println("Deleted box at " + coords[0] + "," + coords[1] );
-                //graphics.drawTexture(Textures.FLOOR, x, y);
             }
         }
     }
