@@ -22,8 +22,6 @@ public class PlayerSystem {
 
     public void init() {
 
-        System.out.println("Test");
-
     }
 
     public int[] transform() {

@@ -3,23 +3,13 @@ package org.bitbuckets.puzzle.subsystems;
 import org.bitbuckets.puzzle.lib.Graphics;
 import org.bitbuckets.puzzle.lib.Textures;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class BoxSystem {
 
     ArrayList<int[]> boxCoords = addBoxes();
     private int numBoxes;
 
-    /*
-    WallSystem wallSystem;
-
-    public BoxSystem(WallSystem wall) {
-        this.wallSystem = wall;
-    }
-
-    */
     public void init () {
         ArrayList<int[]> boxCoords = addBoxes();
     }
@@ -27,16 +17,11 @@ public class BoxSystem {
 
     // makes sure boxes do not share coordinates
     // && (!wallSystem.isAWall(element[0], element[1]))
-    public ArrayList<int[]> checkBoxes(ArrayList<int[]> list)
+    public ArrayList<int[]> checkBoxes(ArrayList<int[]> lst)
     {
-        ArrayList<int[]> newList = new ArrayList<int[]>();
-        for (int[] element : list) {
-
-            if (!newList.contains(element)) {
-
-                newList.add(element);
-            }
-        }
+        HashSet<int[]> temp = new HashSet<int[]>();
+        temp.addAll(lst);
+        ArrayList<int[]> newList = new ArrayList<>(temp);
         return newList;
 
     }
@@ -45,7 +30,12 @@ public class BoxSystem {
     {
         ArrayList<int[]> list = new ArrayList<>();
 
+        list.add(new int[]{5,5});
 
+        list.add(new int[]{6,6});
+
+        list.add(new int[]{7,7});
+/*
         for (int numBoxes = 8; numBoxes > 0; numBoxes--) {
             // int a = Math.random()*(max-min+1)+min;
             // max = 8, min = 3
@@ -54,10 +44,14 @@ public class BoxSystem {
             list.add(new int[]{x, y});
         }
 
-        list = checkBoxes(list);
+ */
 
-        numBoxes = list.size();
-        return list;
+        ArrayList<int[]> checkedList = new ArrayList<>();
+
+        checkedList = checkBoxes(list);
+
+        numBoxes = checkedList.size();
+        return checkedList;
 
     }
 
