@@ -58,7 +58,7 @@ public class PlayerSystem {
         int newY = currentPos[1] + transform[1];
         if (boxSystem.isABox(newX, newY) && canMoveBox(newX + transform[0], newY + transform[1]))
         {
-            boxSystem.moveBox(graphics, newX, newY, newX + transform[0], newY + transform[1]);
+            boxSystem.moveBox(newX, newY, newX + transform[0], newY + transform[1]);
         }
         else if (boxSystem.isABox(newX, newY) && !canMoveBox(newX + transform[0], newY + transform[1]))
         {

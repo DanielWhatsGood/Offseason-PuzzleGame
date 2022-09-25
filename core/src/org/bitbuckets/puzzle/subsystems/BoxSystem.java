@@ -19,24 +19,38 @@ public class BoxSystem {
     // && (!wallSystem.isAWall(element[0], element[1]))
     public ArrayList<int[]> checkBoxes(ArrayList<int[]> lst)
     {
-        HashSet<int[]> temp = new HashSet<int[]>();
-        temp.addAll(lst);
-        ArrayList<int[]> newList = new ArrayList<>(temp);
+
+        ArrayList<int[]> newList = new ArrayList<>();
+
+        for (int[] box : lst) {
+            if (!containsAValue(newList, box)) {
+                newList.add(box);
+            }
+        }
+
         return newList;
 
+    }
+
+    boolean containsAValue(ArrayList<int[]> list, int[] value) {
+        for (int[] number : list) {
+            return number[0] == value[0] && number[1] == value[1];
+        }
+
+        return false;
     }
 
     public ArrayList<int[]> addBoxes()
     {
         ArrayList<int[]> list = new ArrayList<>();
-
+/*
         list.add(new int[]{5,5});
 
         list.add(new int[]{6,6});
 
         list.add(new int[]{7,7});
-/*
-        for (int numBoxes = 8; numBoxes > 0; numBoxes--) {
+*/
+        for (int numBoxes = 5; numBoxes > 0; numBoxes--) {
             // int a = Math.random()*(max-min+1)+min;
             // max = 8, min = 3
             int x = (int) (Math.random() * (5) + 3);
@@ -44,13 +58,12 @@ public class BoxSystem {
             list.add(new int[]{x, y});
         }
 
- */
 
-        ArrayList<int[]> checkedList = new ArrayList<>();
 
-        checkedList = checkBoxes(list);
+        ArrayList<int[]> checkedList = checkBoxes(list);
 
         numBoxes = checkedList.size();
+
         return checkedList;
 
     }
@@ -66,12 +79,11 @@ public class BoxSystem {
         return false;
     }
 
-    public void moveBox(Graphics graphics, int oldX, int oldY, int x, int y)
+    public void moveBox(int oldX, int oldY, int x, int y)
     {
         deleteBox(oldX, oldY);
         int[] newBox = {x, y};
         addBox(newBox);
-        graphics.drawTexture(Textures.BOX, x, y);
 
     }
 
