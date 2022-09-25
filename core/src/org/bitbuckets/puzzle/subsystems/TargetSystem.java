@@ -4,15 +4,15 @@ import org.bitbuckets.puzzle.lib.Graphics;
 import org.bitbuckets.puzzle.lib.Textures;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class TargetSystem {
 
     ArrayList<int[]> targetCoords;
     ArrayList<int[]> boxCoords;
-    int numTargets;
     public TargetSystem(ArrayList<int[]> boxCoords)
     {
-        numTargets = boxCoords.size();
         this.boxCoords = boxCoords;
         targetCoords = addTargets();
     }
@@ -21,7 +21,7 @@ public class TargetSystem {
     public ArrayList<int[]> addTargets()
     {
         ArrayList<int[]> list = new ArrayList<int[]>();
-        for (int i = 0; i < numTargets; i++)
+        for (int i = 0; i < boxCoords.size(); i++)
         {
             int x = (int) (Math.random() * (8) + 2);
             int y = (int) (Math.random() * (8) + 2);
@@ -42,26 +42,49 @@ public class TargetSystem {
         return false;
     }
 
-    public boolean allBoxesOnTargets()
+    public boolean boxOnTarget(int index)
     {
-        int counter = 0;
+        int[] checkTarget = targetCoords.get(index);
         for (int[] box : boxCoords)
         {
-            for (int[] target : targetCoords) {
-                if (target[0] != box[0] || target[1] != box[1]) {
-                    counter++;
+            if (checkTarget[0] == box[0] && checkTarget[1] == box[1])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
-                    if (counter >= numTargets)
-                    {
-                        return false;
-                    }
-                }
+    public boolean allBoxesOnTargets()
+    {
+        boolean[] boxOnTargets = new boolean[targetCoords.size()];
+        for (int i = 0; i < targetCoords.size(); i++) {
+            boxOnTargets[i] = boxOnTarget(i);
+        }
+
+        for (boolean bool : boxOnTargets)
+        {
+            if (bool == false)
+            {
+                return false;
             }
         }
 
         return true;
+        /*
+        Arrays.asList(targetCoords);
+        Arrays.asList(boxCoords);
+        CollectionUtils.isEqualCollection(targetCoords,boxCoords);
+
+        Collections.sort(list1);
+        Collections.sort(list2);
+
+        return list1.equals(list2);
+         */
 
     }
+
+    boolean hasWonYet = false;
 
     public void periodic(Graphics graphics, ArrayList<int[]> newBoxCoords)
     {
@@ -74,9 +97,13 @@ public class TargetSystem {
 
         if (allBoxesOnTargets())
         {
-            System.out.println("Congratulations on clearing the game!");
-        }
+            if (hasWonYet == false) {
+                System.out.println("Congratulations on clearing the game!");
+                hasWonYet = true;
+                System.exit(0);
+            }
 
+        }
 
     }
 }
