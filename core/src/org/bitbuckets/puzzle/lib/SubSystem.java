@@ -2,7 +2,7 @@ package org.bitbuckets.puzzle.lib;
 
 public interface SubSystem {
 
-    void init();
+    default void init() {}
     void periodic(Graphics graphics);
 
 }
